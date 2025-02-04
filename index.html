@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Transitions and Animations</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        
+        /* Button with transition */
+        .btn {
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+            background-color: #3498db;
+            color: white;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #2980b9;
+            transform: scale(1.1);
+        }
+        
+        /* Box with animation */
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: crimson;
+            animation: fadeIn 2s ease-in-out;
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(-20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Spinner animation */
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #ccc;
+            border-top: 5px solid #3498db;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Hidden class to toggle */
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <button class="btn" onclick="toggleBox()">Toggle Box</button>
+    <div class="box" id="animatedBox"></div>
+    <br>
+    <button class="btn" onclick="calculateArea(5, 10)">Calculate Area</button>
+    <p id="result"></p>
+    <br>
+    <button class="btn" onclick="toggleSpinner()">Toggle Spinner</button>
+    <div class="spinner hidden" id="spinner"></div>
+    
+    <script>
+        // Function with parameters and return value
+        function calculateArea(length, width) {
+            let area = length * width;
+            document.getElementById("result").textContent = `Area: ${area} sq units`;
+            return area;
+        }
+        
+        // Function demonstrating scope
+        let globalVar = "I am global";
+        function showScope() {
+            let localVar = "I am local";
+            console.log(globalVar); // Accessible
+            console.log(localVar);  // Accessible
+        }
+        showScope();
+        // console.log(localVar); // Uncommenting this line will cause an error
+        
+        // Function to toggle animation class
+        function toggleBox() {
+            let box = document.getElementById("animatedBox");
+            box.classList.toggle("hidden");
+        }
+        
+        function toggleSpinner() {
+            let spinner = document.getElementById("spinner");
+            spinner.classList.toggle("hidden");
+        }
+    </script>
+</body>
+</html>
